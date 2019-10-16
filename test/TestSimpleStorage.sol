@@ -9,11 +9,10 @@ contract TestSimpleStorage {
   function testItStoresAValue() public {
     SimpleStorage simpleStorage = SimpleStorage(DeployedAddresses.SimpleStorage());
 
-    simpleStorage.set(89);
+    simpleStorage.issueCert(9845298452,"Prabhu","OSI2019","Bangalore","OSI India");
+    string memory expected = "Prabhu";
 
-    uint expected = 89;
-
-    Assert.equal(simpleStorage.get(), expected, "It should store the value 89.");
+    Assert.equal(simpleStorage.getAttendeeName(9845298452), expected, "It should store Prabhu.");
   }
 
 }

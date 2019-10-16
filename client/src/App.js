@@ -7,7 +7,7 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { storageValue: 0, web3: null, accounts: null, contract: null };
+    this.state = { name: null, conf: null, details: null, issuedBy: null, storageValue: 0, web3: null, accounts: null, contract: null };
   }
 
   componentDidMount = async () => {
@@ -42,13 +42,13 @@ class App extends Component {
     const { accounts, contract } = this.state;
 
     // Stores a given value, 5 by default.
-    await this.state.contract.methods.set(8).send({ from: this.state.accounts[0] });
+    await this.state.contract.methods.issueCert(9845298452, "Pari", "OSI2019", "Bangalore", "OSI India").send({ from: this.state.accounts[0] });
 
     // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
+    const response = await contract.methods.verifyCert(9845298452).call();
 
     // Update state with the result.
-    this.setState({ storageValue: response });
+    this.setState({ storageValue: response, name: response.name  });
   };
   /*handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
@@ -71,12 +71,12 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
+        <h1>Welcome to OSI2019 Blockchain workshop!</h1>
+        <p>This is your first DApp.</p>
+        <h2>Smart Contract Example to store your conference participation record</h2>
         <p>
           If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
+          a stored value of attendee Prabhu (by default).
         </p>
      {/*
         <form onSubmit={this.handleSubmit}>
@@ -89,7 +89,7 @@ class App extends Component {
         <p>
           Try changing the value stored on <strong>line 40</strong> of App.js.
         </p>
-        <div>The stored value is: {this.state.storageValue}</div>
+        <div>The stored value is: {this.state.name}</div>
       </div>
     );
   }
