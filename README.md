@@ -11,9 +11,15 @@
 
 
 > truffle compile
+
 > truffle migrate
+
 > truffle test
+
 > cd client
+
 > npm install
+
 > npm run test
+
 > npm run start
