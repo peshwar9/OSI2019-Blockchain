@@ -41,7 +41,7 @@ class App extends Component {
   runExample = async () => {
     const { accounts, contract } = this.state;
 
-    // Stores a given value, 5 by default.
+    // Issues attandance record on blockchain for a given attendeee.
   //  await this.state.contract.methods.issueCert(9845298452, "Vitalik Buterin", "OSI2019", "Bangalore", "OSI India").send({ from: this.state.accounts[0] });
 
     // Get the value from the contract to prove it worked.
@@ -50,21 +50,7 @@ class App extends Component {
     // Update state with the result.
     this.setState({ storageValue: response, name: response.name, conf: response.conf, details: response.details, issuedBy: response.issuedBy  });
   };
-  /*handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
 
-  }
-  handleChange(event) {
-    this.setState({storageValue: event.target.value});
-    console.log("Prabhu", event.target);
-    this.state.contract.methods.set(this.state.value).send({ from: this.state.accounts[0] });
-      // Get the value from the contract to prove it worked.
-      const response = this.state.contract.methods.get().call();
-
-      // Update state with the result.
-      this.setState({ storageValue: response });
-  }*/
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
@@ -76,19 +62,11 @@ class App extends Component {
         <p>This is your first DApp.</p>
         <h2>Smart Contract Example to verify conference participation records</h2>
         <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of attendee Prabhu (by default).
+          If your contracts compiled and migrated successfully, and if data is stored correctly, below will show
+          details of attendees stored on blockchain (by default).
         </p>
-     {/*
-        <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-     </form> */}
         <p>
-          Try changing the value stored on <strong>line 40</strong> of App.js.
+          Try changing the phone number stored on <strong>line 48</strong> of App.js.
         </p>
         <div>Phone number is: {this.state.number}</div>
         <div>Attendee Name is: {this.state.name}</div>
