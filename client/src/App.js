@@ -42,13 +42,13 @@ class App extends Component {
     const { accounts, contract } = this.state;
 
     // Stores a given value, 5 by default.
-    await this.state.contract.methods.issueCert(9845298452, "Vitalik Buterin", "OSI2019", "Bangalore", "OSI India").send({ from: this.state.accounts[0] });
+  //  await this.state.contract.methods.issueCert(9845298452, "Vitalik Buterin", "OSI2019", "Bangalore", "OSI India").send({ from: this.state.accounts[0] });
 
     // Get the value from the contract to prove it worked.
-    const response = await contract.methods.verifyCert(9845298452).call();
+    const response = await contract.methods.verifyCert(9845498454).call();
 
     // Update state with the result.
-    this.setState({ storageValue: response, name: response.name  });
+    this.setState({ storageValue: response, name: response.name, conf: response.conf, details: response.details, issuedBy: response.issuedBy  });
   };
   /*handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
@@ -74,7 +74,7 @@ class App extends Component {
       <div className="App">
         <h1>Welcome to OSI2019 Blockchain workshop!</h1>
         <p>This is your first DApp.</p>
-        <h2>Smart Contract Example to store your conference participation record</h2>
+        <h2>Smart Contract Example to verify conference participation records</h2>
         <p>
           If your contracts compiled and migrated successfully, below will show
           a stored value of attendee Prabhu (by default).
@@ -90,7 +90,11 @@ class App extends Component {
         <p>
           Try changing the value stored on <strong>line 40</strong> of App.js.
         </p>
-        <div>The stored value is: {this.state.name}</div>
+        <div>Phone number is: {this.state.number}</div>
+        <div>Attendee Name is: {this.state.name}</div>
+        <div>Conference name is: {this.state.conf}</div>
+        <div>Conference detail : {this.state.details}</div>
+        <div>Issued By: {this.state.issuedBy}</div>
       </div>
     );
   }
