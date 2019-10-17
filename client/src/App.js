@@ -42,7 +42,7 @@ class App extends Component {
     const { accounts, contract } = this.state;
 
     // Stores a given value, 5 by default.
-    await this.state.contract.methods.issueCert(9845298452, "Pari", "OSI2019", "Bangalore", "OSI India").send({ from: this.state.accounts[0] });
+    await this.state.contract.methods.issueCert(9845298452, "Vitalik Buterin", "OSI2019", "Bangalore", "OSI India").send({ from: this.state.accounts[0] });
 
     // Get the value from the contract to prove it worked.
     const response = await contract.methods.verifyCert(9845298452).call();
@@ -53,6 +53,7 @@ class App extends Component {
   /*handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+
   }
   handleChange(event) {
     this.setState({storageValue: event.target.value});
